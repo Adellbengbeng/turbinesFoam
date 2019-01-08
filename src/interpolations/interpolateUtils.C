@@ -133,10 +133,12 @@ scalar Foam::interpolateUtils::interpolate1D
     label xIndex
 )
 {
+    // Ensure to change xIndex if possible
+    scalar xPart = getPart(xNew, xList, xIndex);
     // Index is known
     return interpolate1D
     (
-        getPart(xNew, xList, xIndex),
+        xPart,
         data,
         xIndex
     );
@@ -184,11 +186,15 @@ scalar Foam::interpolateUtils::interpolate2D
     label yIndex
 )
 {
+    // Ensure to change xIndex if possible
+    scalar xPart = getPart(xNew, xList, xIndex);
+    // Ensure to change yIndex if possible
+    scalar yPart = getPart(yNew, yList, yIndex);
     // Index values are known
     return interpolate2D
     (
-        getPart(xNew, xList, xIndex),
-        getPart(yNew, yList, yIndex),
+        xPart,
+        yPart,
         data,
         xIndex,
         yIndex
